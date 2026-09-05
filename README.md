@@ -11,19 +11,28 @@
 
 ---
 
-## Prerequisites
+## Architecture & Workflow
 
-* A C++ compiler supporting C++23 (e.g., Clang 16+, MSVC 19.30+, or GCC 13+).
-* **CMake** (version 3.25 or higher).
-* **Ninja** build system.
+The diagram below illustrates how `gits` navigates a directory tree and interacts with discovered repositories:
 
----
-
-## Getting Started & Build Instructions
-
-### 1. Clone with Submodules
-Clone the repository along with its `rang` submodule:
-
-```bash
-git clone --recurse-submodules [https://github.com/yourusername/CppGitStatus.git](https://github.com/yourusername/CppGitStatus.git)
-cd CppGitStatus
+```mermaid
+flowchart TD
+    Start([Start gits <path>]) --> Validate{Valid Directory?}
+    Validate -- No --> Err1[Show Red Error & Exit]
+    Validate -- Yes --> Scan[Initialize Recursive Iterator]
+    
+    Scan --> Loop{More Entries?}
+    Loop -- No --> Finish[Display Summary & Exit]
+    
+    Loop -- Yes --> Read[Read Next Path Entry]
+    Read --> CheckErr{Error / Access Denied?}
+    CheckErr -- Yes --> Skip[Skip Entry / Catch Exception] --> Loop
+    
+    CheckErr -- No --> IsGit{Is folder named '.git'?}
+    IsGit -- No --> Loop
+    
+    IsGit -- Yes --> Found[Increment Repo Count]
+    Found --> Color[Set Green Color Output]
+    Color --> Exec[Execute: git -C <repo_path> status]
+    Exec --> Prune[Disable Recursion inside .git]
+    Prune --> Loop
