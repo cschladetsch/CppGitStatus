@@ -1,24 +1,28 @@
-# gits
+# Git Repo Scanner
 
-`gits` is a high-performance, local-first C++23 command-line utility designed to recursively scan directory trees, discover Git repositories, and provide either full status reports or quick condensed summaries.
+A high-performance C++20 utility designed to recursively scan directory trees, discover Git repositories, and provide quick status reports or path lookups[cite: 1].
 
 ## Features
 
-* **Recursive Discovery**: Scans target directories efficiently for `.git` folders.
-* **Smart Pruning**: Automatically skips heavy or irrelevant subdirectories (`build`, `vcpkg`, `node_modules`, `.vs`, etc.) for lightning-fast scans.
-* **Short Summary Mode (`-s`)**: Lists all discovered repositories with a clean, color-coded one-line status summary (`git status -sb`).
-* **Index Navigation**: Allows targeting specific repositories by their discovery index (`gits <path> <N>`) to fetch their absolute paths or automate workflows.
-* **Unicode Resilient**: Fully safe path-handling on Windows to prevent multi-byte character mapping crashes.
-* **Terminal Colored**: Enhanced visual output using ANSI colors via `rang`.
+* **Recursive Scanning**: Efficiently traverses directory structures while automatically skipping heavy or irrelevant subdirectories (`build`, `build_deps`, `vcpkg`, `node_modules`, `.vs`, `.gradle`)[cite: 1].
+* **Intelligent Short Summary (`-s`)**: Programmatically queries repository states using porcelain formats to output a clean, colored, single-line overview of the current branch, staged changes, modifications, and untracked files[cite: 1].
+* **Indexed Lookups**: Pass a repository index to output its absolute path directly, making it ideal for shell scripting and automation workflows[cite: 1].
+* **Robust & Safe**: Features safe path conversions for multi-byte code pages on Windows and RAII-based color management via `rang`[cite: 1].
+
+## Requirements
+
+* A C++20 compatible compiler supporting `<filesystem>` and `<print>`[cite: 1]
+* [rang](https://github.com/agauniyal/rang) terminal styling library[cite: 1]
+* Git CLI available in your system `PATH`
 
 ## Usage
 
-```powershell
-# Show full status reports for all repositories recursively
-gits <parent-folder-path>
+```bash
+# 1. Scan and display detailed status for all discovered repositories
+repo-scanner <parent-folder-path>
 
-# Show a quick condensed short summary (-sb) for all repositories
-gits <parent-folder-path> -s
+# 2. Display an intelligent, single-line summary for all repositories (-s)
+repo-scanner <parent-folder-path> -s
 
-# Output the absolute path of the N-th discovered repository
-gits <parent-folder-path> <repository-index>
+# 3. Retrieve the absolute path of a specific repository by its index
+repo-scanner <parent-folder-path> <repo-index>
