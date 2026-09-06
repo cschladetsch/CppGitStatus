@@ -4,7 +4,7 @@ A high-performance C++20 utility designed to recursively scan directory trees, d
 
 ## Demo
 
-![Demo][resources/Untitiled.png]
+![Demo](resources/Untitiled.png)
 
 ## Features
 
