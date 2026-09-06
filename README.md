@@ -2,6 +2,10 @@
 
 A high-performance C++20 utility designed to recursively scan directory trees, discover Git repositories, and provide quick status reports or path lookups[cite: 1].
 
+## Demo
+
+![Demo][resources/Untitiled.png]
+
 ## Features
 
 * **Recursive Scanning**: Efficiently traverses directory structures while automatically skipping heavy or irrelevant subdirectories (`build`, `build_deps`, `vcpkg`, `node_modules`, `.vs`, `.gradle`)[cite: 1].
