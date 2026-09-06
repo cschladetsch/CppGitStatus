@@ -23,10 +23,10 @@ A high-performance C++20 utility designed to recursively scan directory trees, d
 
 ```bash
 # 1. Scan and display detailed status for all discovered repositories
-repo-scanner <parent-folder-path>
+gits <parent-folder-path>
 
 # 2. Display an intelligent, single-line summary for all repositories (-s)
-repo-scanner <parent-folder-path> -s
+gits <parent-folder-path> -s
 
 # 3. Retrieve the absolute path of a specific repository by its index
-repo-scanner <parent-folder-path> <repo-index>
+gits <parent-folder-path> <repo-index>
