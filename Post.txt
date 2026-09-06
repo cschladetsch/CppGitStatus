@@ -1,4 +1,4 @@
-A high-performance C++0 utility designed to recursively scan directory trees, discover Git repositories, and provide instant status reports or path lookups.
+A high-performance C++20 utility designed to recursively scan directory trees, discover Git repositories, and provide instant status reports or path lookups.
 
 Key Features
 
@@ -9,7 +9,7 @@ Key Features
 
 Requirements & Usage
 
-- **Requirements:** A C++0 compatible compiler supporting `<filesystem>` and `<print>`, the `rang` terminal styling library, and the Git CLI in your system `PATH`.
+- **Requirements:** A C++20 compatible compiler supporting `<filesystem>` and `<print>`, the `rang` terminal styling library, and the Git CLI in your system `PATH`.
 - **Scan All Repos:** `repo-scanner <parent-folder-path>`
 - **Short Summary:** `repo-scanner <parent-folder-path> -s`
 - **Path Lookup:** `repo-scanner <parent-folder-path> <repo-index>`
